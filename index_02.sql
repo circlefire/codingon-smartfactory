@@ -54,7 +54,45 @@ select * from customer where addr != '대한민국 서울' and addr != '영국 �
 select * from customer where addr not like '대한민국 서울' and addr not like '영국 런던';
 
 -- 패턴(like): 특정 패턴을 포함하는 데이터를 검색
-select * from customer where addr like '로스엔젤레스';
+-- %: 0개 이상의 문자
+-- _: 1개의 단일 문자
+-- 주소가 '미국 로스앤젤레스'인 고객 검색
+select * from customer where addr like '미국 로스앤젤레스';
+
+-- 주소에 '미국'잉 포함되어 있는 고객 검색
+-- 검출 가능한 케이스: '미국', '미국 ', '미국 워싱턴', '미국 로스앤젤레스', ...
+select * from customer where addr like '미국%';
+select * from customer where addr like '미국_'; -- 검출 가능한 케이스: '미국 ', '미국인', ... 등등 3글자만
+
+select * from customer where custname like '_지%'; -- 두번째 글자가 '지'인 사람
+select * from customer where custname like '%지%'; -- 글자에 '지'가 포함된 사람
+select * from customer where custname like '%지_'; -- 뒤에서 두 번째 글자가 '지'인 사람
+select * from customer where custname like '_지'; -- 이름이 2자이며, 마지막 글자가 '지'인 사람
+
+-- 고객 이름 세번째 글자가 '수'인 고객 검색
+select * from customer where custname like '__수%';
+
+-- 복합 조건(and, or, not)
+-- 주소지가 대한민국이고, 2000년 이후 출생 고객 검색
+select * from customer where addr like '대한민국%' and birth >= '2000-01-01';
+select * from customer where addr like '미국%' or addr like '영국%';
+select * from customer where phone not like '%4';
+
+-- < order by >
+-- order by 절을 사용하지 않는 경우, pk 기준으로 정렬
+select * from customer;
+
+-- custname 속성을 기준으로 "오름차순" 정렬
+select * from customer order by custname ;
+-- custname 속성을 기준으로 "내림차순" 정렬
+select * from customer order by custname desc;
+
+-- order by & where 함께 사용
+-- 2000년 이후 출생자 중에서 주소를 기준으로 내림차순 검색
+select * from customer order by addr desc where birth>= '2000-01-01';
+select * from customer order by addr desc where birth>= '2000-01-01';
+
+
 
 
 -- smartfactory 데이터베이스 사용
