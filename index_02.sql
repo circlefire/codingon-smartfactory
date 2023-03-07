@@ -90,10 +90,29 @@ select * from customer order by custname desc;
 -- order by & where 함께 사용
 -- 2000년 이후 출생자 중에서 주소를 기준으로 내림차순 검색
 select * from customer order by addr desc where birth>= '2000-01-01';
-select * from customer order by addr desc where birth>= '2000-01-01';
+select * from customer  where birth>= '2000-01-01' order by addr desc;
+-- 아래 두 쿼리문의 결과는 상이함
+select * from orders order by price, amount;
+select * from orders order by amount, price;
 
+-- < limit >
+-- limit 형식: limit 시작, 개수 == limit 개수 offset 시작
+-- 주의) limit에서 시작은 0임을 잊지말자!!
+-- ex. limit 2 == limit 0,2 == limit 2 offset 0
+-- 고객테이블 전체 정보를 조회하는데, 앞에 2건만 조회하고 싶은 경우
+select * 
+from customer 
+limit 2;
 
+-- 고객 테이블 전체 정보를 조회하는데, 두번째부터 여섯번째 행만 조회하고 싶은 경우
+select * from customer limit 1,5;
+select * from customer limit 5 offset 1;
 
+-- 2000년 이후 출생 고객중에서 앞에 2건만 조회하고 싶은 경우
+select * from customer where birth >= '2000-01-01' limit 2;
+
+-- 2000년 이후 출생 고객중에서 뒤에 2건만 조회하고 싶은 경우
+select * from customer where birth >= '2000-01-01' order by custid desc limit 2;
 
 -- smartfactory 데이터베이스 사용
 use smartfactory;
