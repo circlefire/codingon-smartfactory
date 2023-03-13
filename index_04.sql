@@ -46,3 +46,16 @@ INSERT INTO new_customer values
 	('asdf', '강세희', '대한민국 부산', '01033331235', '2004-11-11'),
 	('sdfg', '윤지성', '일본 도쿄', '01033331236', '1995-02-15'),
     ('dfgh', '이재은', '미국 뉴욕', '01033331237', '2004-06-07');
+    
+-- < UPDATE >
+update new_customer set addr = '대한민국 서울' where custid = 'apple';
+update new_customer set addr = '대한민국 서울' where custid like '%y';
+
+SELECT * FROM new_customer;
+SELECT * FROM new_orders;
+
+-- < DELETE > 
+delete from new_customer where custid='happy';
+-- 외래키 연결되어 있는 경우, 연쇄 삭제
+delete from new_customer where custid='kiwi';
+
