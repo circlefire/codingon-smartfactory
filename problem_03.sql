@@ -11,6 +11,7 @@ create table member(
 );
 desc member;
 
+
 -- < 실습 DDL 이용해 테이블 구조 수정하기 >
 -- alter; 잘 안쓰이지만 지금은 값이 안들어가있기 때문에 사용해도 무방
 -- id 컬럼 값 형식 변경
