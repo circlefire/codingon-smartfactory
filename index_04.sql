@@ -101,6 +101,23 @@ update authors set  last_name = 'Martinez' where author_id=2;
 delete from authors where author_id=3;
 
 
+SELECT * FROM authors;
+SELECT * FROM books;
+SELECT * FROM orders;
+-- < 추가 실습 >
+-- 11. Stephen King이 쓴 모든 책의 제목과 발행일을 표시합니다.
+select title, publication_date from books where author_id =  3; 
+
+-- 12. 책을 쓴 저자의 이름을 표시합니다.
+select first_name, last_name from authors where author_id in (select author_id from books);
+
+-- 13. 각 저자가 쓴 책의 수를 표시합니다.
+select first_name, last_name, count(author_id) as num_books from authors where author_id in (select author_id from books) group by author_id;
+    
+-- 14. 2022년 2월 16일 이후에 발생한 모든 주문에 대한 책 제목과 고객 이름을 표시합니다.
+select title, customer_name
+	from orders join books
+    on books.book_id=orders.book_id and order_date>='2022-02-16';
 
 CREATE TABLE new_orders (
 	orderid INT PRIMARY KEY AUTO_INCREMENT,
