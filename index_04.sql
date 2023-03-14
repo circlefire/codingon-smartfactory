@@ -9,12 +9,14 @@ CREATE TABLE new_customer (
 );
 DESC new_customer;
 use new_prac;
+DROP TABLE IF EXISTS authors;
 create table authors(
 	author_id int not null primary key,
 	first_name varchar(50),
     last_name varchar(50),
     email varchar(50)
 );
+DROP TABLE IF EXISTS books;
 create table books(
 	book_id int not null primary key,
     author_id int,
@@ -22,6 +24,7 @@ create table books(
     publication_date date,
     FOREIGN KEY(author_id) REFERENCES authors(author_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
+DROP TABLE IF EXISTS orders;
 create table orders(
 	order_id int not null primary key,
 	customer_name varchar(50),
