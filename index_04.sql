@@ -112,7 +112,11 @@ select title, publication_date from books where author_id =  3;
 select first_name, last_name from authors where author_id in (select author_id from books);
 
 -- 13. 각 저자가 쓴 책의 수를 표시합니다.
-select first_name, last_name, count(author_id) as num_books from authors where author_id in (select author_id from books) group by author_id;
+insert into books values(4,3,' haha','1985-05-12');
+SELECT a.first_name, a.last_name, COUNT(b.book_id) AS 'num_books'
+FROM authors AS a, books AS b
+WHERE a.author_id = b.author_id
+GROUP BY a.author_id;
     
 -- 14. 2022년 2월 16일 이후에 발생한 모든 주문에 대한 책 제목과 고객 이름을 표시합니다.
 select title, customer_name
