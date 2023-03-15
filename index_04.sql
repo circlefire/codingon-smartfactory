@@ -7,6 +7,7 @@ CREATE TABLE new_customer (
     phone CHAR(11),
     birth DATE
 );
+
 DESC new_customer;
 use new_prac;
 DROP TABLE IF EXISTS authors;
@@ -113,6 +114,7 @@ select first_name, last_name from authors where author_id in (select author_id f
 
 -- 13. 각 저자가 쓴 책의 수를 표시합니다.
 insert into books values(4,3,' haha','1985-05-12');
+
 SELECT a.first_name, a.last_name, COUNT(b.book_id) AS 'num_books'
 FROM authors AS a, books AS b
 WHERE a.author_id = b.author_id
