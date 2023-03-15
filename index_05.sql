@@ -50,3 +50,40 @@ select orderid, custid, prodname from orders where price * amount =(select max(p
 
 -- 주문 이력이 있는 고객 조회
 select custname from customer where custid in (select custid from orders);
+
+-- <left outer join, left join>
+-- : 첫 번째 테이블을 기준으로 두번째 테이블을 조합하는 join
+-- 테이블A LEFT JOIN 테이블B ON 조인조건
+-- LEFT(왼쪽) 테이블의 것은 모두 출력이 됨!!
+-- 조인 순서가 중요!!
+-- ON 조건을 불만족시; 테이블 A 속성 값은 그대로 가져오고, 테이블 B 속성 값은 NULL;
+use smartfactory;
+
+SELECT * from authors; -- 3 명
+select * from books; -- 4권
+
+
+-- books 테이블에 데이터 추가
+-- 책아이디: 5
+-- 제목: Lucky Day
+-- 작가아이디: NULL
+-- 출판일자: 2023-03-01
+
+
+insert into books values (6,NULL,'Lucky Day','2024-03-01');
+delete from books where book_id = 6;
+
+-- inner join (books, authors)
+select * from books inner join authors on books.author_id = authors.author_id;
+-- books 테이블에 author_id가 NULL이었던 행은 제외되고 출력
+
+-- left join (books, authors)
+select * from books left join authors on books.author_id = authors.author_id;
+select * from authors left join books on books.author_id = authors.author_id;
+
+
+insert into authors values (4,'Anthony','Lee',NULL);
+
+
+
+
