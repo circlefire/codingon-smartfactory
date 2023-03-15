@@ -43,6 +43,11 @@ GRANT SELECT ON new_smartfactory.* TO 'happy'@'localhost' WITH GRANT OPTION;
 alter user 'codee'@'localhost' identified with mysql_native_password by '4321';
 flush privileges;
 
+-- < REVOKE >
+-- : 권한 박탈alter
+-- REVOKE [권한 유형] ON [데이터베이스이름].[테이블이름] FROM [계정명@접속경로];
+REVOKE delete on *.* from 'codee'@'localhost'; -- select 권한 박탈
+revoke all on *.* from 'codee'@'localhost'; -- 모든 권한 박탈
 -- 계정 삭제
 DROP USER 'codee'@'localhost';
 flush privileges; -- 새로고침해야 반영!
