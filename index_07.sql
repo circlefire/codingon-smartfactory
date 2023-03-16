@@ -86,7 +86,7 @@ select * from employees where department_id = (select department_id from departm
 
 
 -- 2. 각 부서의 총 직원 수를 반환하는 쿼리를 작성합니다.
-SELECT department_name, COUNT(department_name) AS 'num_department'
+SELECT department_name, COUNT(*) AS 'num_department'
 FROM employees, departments
 WHERE employees.department_id = departments.department_id
 GROUP BY employees.department_id;
@@ -106,6 +106,10 @@ FROM employees, jobs
 WHERE employees.job_id = jobs.job_id
 GROUP BY employees.job_id;
 
+select job_title, avg(salary) AS 'job_avg_salary'
+	from employees  join jobs
+    on employees.job_id=jobs.job_id
+    group by employees.job_id;
 
 -- 6. 모든 직업에 대한 직책과 최대 급여를 반환하는 조회를 작성합니다.
 select job_title, max_salary from jobs;
