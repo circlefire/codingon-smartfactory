@@ -141,3 +141,20 @@ select first_name, last_name, salary from employees where commission_pct>0;
 select first_name, last_name, salary from employees where isnull(commission_pct);
 
 
+-- 셀프 조인
+create table users (
+	id int primary key, -- 유저 번호
+    name varchar(10), -- 유저명
+    superior_id int -- 상사
+);
+
+insert into users values
+	(1,'happy',null),
+    (2,'banana',1),
+    (3,'lucky',2),
+    (4,'orange',2),
+    (5,'apple',null);
+
+select * from users;	
+select * from users as u1 join users as u2 on u1.superior_id=u2.id;
+select u1.id, u1.name as '멘티명', u2.name as '멘토명' from users as u1 join users as u2 on u1.superior_id=u2.id;
